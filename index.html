@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Vimal Kumar G — B.Sc IT Student & Aspiring Full Stack / Python Developer from Coimbatore, Tamil Nadu. Explore projects, skills, internships and more." />
+  <meta name="keywords" content="Vimal Kumar G, portfolio, Python developer, full stack, IT student, Coimbatore" />
+  <meta name="author" content="Vimal Kumar G" />
+  <title>Vimal Kumar G — Portfolio</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Icons via Iconify CDN -->
+  <script src="https://code.iconify.design/3/3.1.0/iconify.min.js" defer></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════ STICKY NAVBAR ═══════════════════ -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo" id="navLogo">
+        <span class="logo-bracket">&lt;</span>VK<span class="logo-bracket">/&gt;</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+        <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
+        <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
+        <li><a href="#internships" class="nav-link" data-section="internships">Internships</a></li>
+        <li><a href="#certifications" class="nav-link" data-section="certifications">Certifications</a></li>
+        <li><a href="#achievements" class="nav-link" data-section="achievements">Achievements</a></li>
+        <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+      <ul class="mobile-nav-links">
+        <li><a href="#about" class="mobile-nav-link">About</a></li>
+        <li><a href="#skills" class="mobile-nav-link">Skills</a></li>
+        <li><a href="#projects" class="mobile-nav-link">Projects</a></li>
+        <li><a href="#internships" class="mobile-nav-link">Internships</a></li>
+        <li><a href="#certifications" class="mobile-nav-link">Certifications</a></li>
+        <li><a href="#achievements" class="mobile-nav-link">Achievements</a></li>
+        <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════ HERO SECTION ═══════════════════ -->
+  <section class="hero" id="hero" data-section-name="Hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-orbs">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+    <div class="hero-container">
+
+      <!-- LEFT HALF: Text Content -->
+      <div class="hero-left reveal-left">
+        <div class="hero-badge">
+          <span class="badge-pulse"></span>
+          <span>Available for Opportunities</span>
+        </div>
+        <h1 class="hero-name">Vimal Kumar G</h1>
+        <p class="hero-title">
+          <span class="typed-prefix">&gt;_ </span>
+          <span id="typedText"></span><span class="typed-cursor">|</span>
+        </p>
+        <p class="hero-objective">
+          Passionate B.Sc IT student from Coimbatore with a drive to build impactful digital solutions. 
+          I bridge the gap between creative problem-solving and clean, efficient code — 
+          eager to grow as a Full Stack &amp; Python Developer.
+        </p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary" id="ctaProjects">
+            <span class="iconify" data-icon="ph:folder-open-bold"></span>
+            View Projects
+          </a>
+
+          <a href="#contact" class="btn btn-ghost" id="ctaContact">
+            <span class="iconify" data-icon="ph:chat-circle-dots-bold"></span>
+            Contact Me
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-number">4+</span>
+            <span class="stat-label">Projects</span>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat">
+            <span class="stat-number">3</span>
+            <span class="stat-label">Internships</span>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat">
+            <span class="stat-number">4+</span>
+            <span class="stat-label">Certifications</span>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat">
+            <span class="stat-number">7.81</span>
+            <span class="stat-label">CGPA</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT HALF: Photo + Description -->
+      <div class="hero-right reveal-right">
+        <div class="photo-wrapper">
+          <!-- ╔══════════════════════════════════════╗
+               ║  REPLACE WITH PROFILE PHOTO          ║
+               ║  Change src to your image path.      ║
+               ║  The id="profilePhoto" lets you      ║
+               ║  target it easily later.             ║
+               ╚══════════════════════════════════════╝ -->
+          <div class="photo-frame" id="photoFrame">
+            <img
+              src="Vimal.jpeg"
+              id="profilePhoto"
+              alt="Vimal Kumar G — Profile Photo"
+              class="profile-photo"
+              onerror="this.style.display='none'; document.getElementById('photoPlaceholder').style.display='flex';"
+            />
+            <!-- Photo placeholder shown when no image is set -->
+            <div class="photo-placeholder" id="photoPlaceholder">
+              <span class="placeholder-initials">VK</span>
+              <span class="placeholder-hint">
+                Add photo to src
+              </span>
+            </div>
+          </div>
+          <div class="photo-ring ring-a"></div>
+          <div class="photo-ring ring-b"></div>
+          <div class="photo-glow"></div>
+        </div>
+
+        <!-- Personal Description below photo -->
+        <div class="hero-bio-card">
+          <p class="hero-bio">
+            I'm a dedicated IT student from Rathinam Deemed To Be University, driven by curiosity and a love for technology.
+            I'm actively seeking internships and entry-level roles where I can contribute as a
+            <strong>Full Stack Developer</strong>.
+            My core strengths are <strong>analytical thinking</strong>, a <strong>collaborative mindset</strong>, and the ability to rapidly adapt to new challenges.
+          </p>
+          <div class="hero-location">
+            <span class="iconify" data-icon="ph:map-pin-fill"></span>
+            Coimbatore, Tamil Nadu
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ═══════════════════ ABOUT SECTION ═══════════════════ -->
+  <section class="section" id="about" data-section-name="About Me">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">About</span>
+        <h2 class="section-title">About <span class="accent">Me</span></h2>
+        <p class="section-subtitle">A passionate tech enthusiast on a journey to make an impact</p>
+      </div>
+
+      <div class="about-grid">
+        <!-- Career Objective -->
+        <div class="about-objective glass-card reveal-up" data-delay="100">
+          <div class="card-icon-wrap">
+            <span class="iconify card-icon" data-icon="ph:target-bold"></span>
+          </div>
+          <h3>Career Objective</h3>
+          <p>
+            To secure a challenging role as a Full Stack or Python Developer where I can leverage my 
+            academic knowledge and hands-on project experience to create innovative, scalable software solutions. 
+            I aim to continuously grow, contribute meaningfully to a team, and bridge theoretical knowledge 
+            with real-world application.
+          </p>
+        </div>
+
+        <!-- Quick Info -->
+        <div class="about-info glass-card reveal-up" data-delay="200">
+          <div class="card-icon-wrap">
+            <span class="iconify card-icon" data-icon="ph:user-circle-bold"></span>
+          </div>
+          <h3>Quick Info</h3>
+          <div class="info-list">
+            <div class="info-item">
+              <span class="iconify" data-icon="ph:envelope-simple-bold"></span>
+              <a href="mailto:vimalkumarg2366@gmail.com">vimalkumarg2366@gmail.com</a>
+            </div>
+            <div class="info-item">
+              <span class="iconify" data-icon="ph:phone-bold"></span>
+              <a href="tel:+916380773950">+91 63807 73950</a>
+            </div>
+            <div class="info-item">
+              <span class="iconify" data-icon="ph:map-pin-bold"></span>
+              <span>Coimbatore, Tamil Nadu</span>
+            </div>
+            <div class="info-item">
+              <span class="iconify" data-icon="ph:linkedin-logo-bold"></span>
+              <a href="https://linkedin.com/in/Vimal-Kumar-G2366" target="_blank" rel="noopener">Vimal-Kumar-G2366</a>
+            </div>
+            <div class="info-item">
+              <span class="iconify" data-icon="ph:github-logo-bold"></span>
+              <a href="https://github.com/vimalkumar-GVK" target="_blank" rel="noopener">vimalkumar-GVK</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Education Timeline -->
+        <div class="about-education glass-card reveal-up" data-delay="300">
+          <div class="card-icon-wrap">
+            <span class="iconify card-icon" data-icon="ph:graduation-cap-bold"></span>
+          </div>
+          <h3>Education</h3>
+          <div class="edu-timeline">
+            <div class="edu-item">
+              <div class="edu-dot"></div>
+              <div class="edu-content">
+                <div class="edu-year">2024 – 2027</div>
+                <strong>B.Sc Information Technology</strong>
+                <span>Rathinam College of Arts and Science, Coimbatore</span>
+                <div class="edu-grade">CGPA: <em>7.81</em></div>
+              </div>
+            </div>
+            <div class="edu-item">
+              <div class="edu-dot"></div>
+              <div class="edu-content">
+                <div class="edu-year">HSC</div>
+                <strong>Higher Secondary Certificate</strong>
+                <span>Thenmalar Higher Secondary School</span>
+                <div class="edu-grade">Percentage: <em>77.8%</em></div>
+              </div>
+            </div>
+            <div class="edu-item">
+              <div class="edu-dot"></div>
+              <div class="edu-content">
+                <div class="edu-year">SSLC</div>
+                <strong>Secondary School Leaving Certificate</strong>
+                <span>Thenmalar Higher Secondary School</span>
+                <div class="edu-grade">Percentage: <em>73.4%</em></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Soft Skills / Traits -->
+        <div class="about-traits glass-card reveal-up" data-delay="400">
+          <div class="card-icon-wrap">
+            <span class="iconify card-icon" data-icon="ph:sparkle-bold"></span>
+          </div>
+          <h3>Core Traits</h3>
+          <div class="trait-tags">
+            <span class="trait-tag">🧩 Problem Solver</span>
+            <span class="trait-tag">🔄 Adaptable</span>
+            <span class="trait-tag">🤝 Team Player</span>
+            <span class="trait-tag">📚 Continuous Learner</span>
+            <span class="trait-tag">🚀 Self-Motivated</span>
+            <span class="trait-tag">🎯 Detail-Oriented</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ SKILLS SECTION ═══════════════════ -->
+  <section class="section section-alt" id="skills" data-section-name="Skills">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">Skills</span>
+        <h2 class="section-title">Technical <span class="accent">Arsenal</span></h2>
+        <p class="section-subtitle">Languages, tools, and soft skills I bring to every project</p>
+      </div>
+
+      <div class="skills-layout">
+        <!-- Skill Bars -->
+        <div class="skills-bars reveal-left">
+          <h3 class="skills-group-title">Technical Proficiency</h3>
+          <div class="skill-bars-list">
+
+            <div class="skill-bar-item" data-label="Python" data-level="85">
+              <div class="skill-bar-meta">
+                <span class="skill-name">
+                  <span class="iconify skill-icon" data-icon="logos:python"></span> Python
+                </span>
+                <span class="skill-pct">85%</span>
+              </div>
+              <div class="skill-track">
+                <div class="skill-fill" style="--target: 85%"></div>
+              </div>
+            </div>
+
+            <div class="skill-bar-item" data-label="Java" data-level="72">
+              <div class="skill-bar-meta">
+                <span class="skill-name">
+                  <span class="iconify skill-icon" data-icon="logos:java"></span> Java
+                </span>
+                <span class="skill-pct">72%</span>
+              </div>
+              <div class="skill-track">
+                <div class="skill-fill" style="--target: 72%"></div>
+              </div>
+            </div>
+
+            <div class="skill-bar-item" data-label="HTML" data-level="88">
+              <div class="skill-bar-meta">
+                <span class="skill-name">
+                  <span class="iconify skill-icon" data-icon="logos:html-5"></span> HTML
+                </span>
+                <span class="skill-pct">88%</span>
+              </div>
+              <div class="skill-track">
+                <div class="skill-fill" style="--target: 88%"></div>
+              </div>
+            </div>
+
+            <div class="skill-bar-item" data-label="CSS" data-level="80">
+              <div class="skill-bar-meta">
+                <span class="skill-name">
+                  <span class="iconify skill-icon" data-icon="logos:css-3"></span> CSS
+                </span>
+                <span class="skill-pct">80%</span>
+              </div>
+              <div class="skill-track">
+                <div class="skill-fill" style="--target: 80%"></div>
+              </div>
+            </div>
+
+            <div class="skill-bar-item" data-label="MySQL" data-level="75">
+              <div class="skill-bar-meta">
+                <span class="skill-name">
+                  <span class="iconify skill-icon" data-icon="logos:mysql"></span> MySQL
+                </span>
+                <span class="skill-pct">75%</span>
+              </div>
+              <div class="skill-track">
+                <div class="skill-fill" style="--target: 75%"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Tech Icon Grid -->
+        <div class="skills-icons reveal-right">
+          <h3 class="skills-group-title">Tech Stack</h3>
+          <div class="tech-grid">
+            <div class="tech-card" data-tooltip="Python">
+              <span class="iconify tech-icon" data-icon="logos:python"></span>
+              <span>Python</span>
+            </div>
+            <div class="tech-card" data-tooltip="Java">
+              <span class="iconify tech-icon" data-icon="logos:java"></span>
+              <span>Java</span>
+            </div>
+            <div class="tech-card" data-tooltip="HTML5">
+              <span class="iconify tech-icon" data-icon="logos:html-5"></span>
+              <span>HTML5</span>
+            </div>
+            <div class="tech-card" data-tooltip="CSS3">
+              <span class="iconify tech-icon" data-icon="logos:css-3"></span>
+              <span>CSS3</span>
+            </div>
+            <div class="tech-card" data-tooltip="MySQL">
+              <span class="iconify tech-icon" data-icon="logos:mysql"></span>
+              <span>MySQL</span>
+            </div>
+            <div class="tech-card" data-tooltip="Arduino">
+              <span class="iconify tech-icon" data-icon="logos:arduino"></span>
+              <span>Arduino</span>
+            </div>
+            <div class="tech-card" data-tooltip="OpenCV">
+              <span class="iconify tech-icon" data-icon="simple-icons:opencv"></span>
+              <span>OpenCV</span>
+            </div>
+            <div class="tech-card" data-tooltip="Git">
+              <span class="iconify tech-icon" data-icon="logos:git-icon"></span>
+              <span>Git</span>
+            </div>
+            <div class="tech-card" data-tooltip="GitHub">
+              <span class="iconify tech-icon" data-icon="mdi:github"></span>
+              <span>GitHub</span>
+            </div>
+            <div class="tech-card" data-tooltip="VS Code">
+              <span class="iconify tech-icon" data-icon="logos:visual-studio-code"></span>
+              <span>VS Code</span>
+            </div>
+          </div>
+
+          <!-- Soft Skills -->
+          <h3 class="skills-group-title" style="margin-top: 2rem;">Soft Skills</h3>
+          <div class="soft-skills">
+            <span class="soft-tag">🧩 Problem Solver</span>
+            <span class="soft-tag">🔄 Adaptable</span>
+            <span class="soft-tag">🤝 Team Player</span>
+            <span class="soft-tag">💬 Communicator</span>
+            <span class="soft-tag">⏱ Time Management</span>
+            <span class="soft-tag">🎯 Goal-Oriented</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ PROJECTS SECTION ═══════════════════ -->
+  <section class="section" id="projects" data-section-name="Projects">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">Projects</span>
+        <h2 class="section-title">Featured <span class="accent">Work</span></h2>
+        <p class="section-subtitle">Real-world solutions built with passion and purpose</p>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- Project 1 -->
+        <div class="project-card glass-card reveal-up" data-delay="100">
+          <div class="project-card-header">
+            <div class="project-icon-wrap">
+              <span class="iconify project-icon" data-icon="ph:hand-bold"></span>
+            </div>
+            <div class="project-links">
+              <!-- REPLACE: Add actual GitHub link -->
+              <a href="https://github.com/vimalkumar-GVK" target="_blank" rel="noopener" class="proj-link" aria-label="GitHub Repository" title="GitHub">
+                <span class="iconify" data-icon="ph:github-logo-bold"></span>
+              </a>
+
+            </div>
+          </div>
+          <div class="project-year">2025</div>
+          <h3 class="project-title">Hand Gesture Controlled Lighting System</h3>
+          <p class="project-desc">
+            An innovative IoT + Computer Vision project that uses real-time hand gesture recognition 
+            via OpenCV to control smart lighting via Arduino. Eliminates physical switches through 
+            intuitive gesture commands, making accessibility effortless.
+          </p>
+          <div class="project-tags">
+            <span class="tag tag-tech">Arduino</span>
+            <span class="tag tag-tech">OpenCV</span>
+            <span class="tag tag-tech">Python</span>
+            <span class="tag tag-tech">IoT</span>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card glass-card reveal-up" data-delay="200">
+          <div class="project-card-header">
+            <div class="project-icon-wrap">
+              <span class="iconify project-icon" data-icon="ph:calendar-check-bold"></span>
+            </div>
+            <div class="project-links">
+              <!-- REPLACE: Add actual GitHub link -->
+              <a href="https://github.com/vimalkumar-GVK" target="_blank" rel="noopener" class="proj-link" aria-label="GitHub Repository" title="GitHub">
+                <span class="iconify" data-icon="ph:github-logo-bold"></span>
+              </a>
+
+            </div>
+          </div>
+          <div class="project-year">2026</div>
+          <h3 class="project-title">Event Hub Application</h3>
+          <p class="project-desc">
+            A full-featured event management web application enabling users to create, discover, and 
+            register for campus events. Features a Python-powered backend with an intuitive HTML/CSS 
+            frontend, supporting event listings, RSVP management, and admin controls.
+          </p>
+          <div class="project-tags">
+            <span class="tag tag-tech">HTML</span>
+            <span class="tag tag-tech">CSS</span>
+            <span class="tag tag-tech">Python</span>
+            <span class="tag tag-tech">Web App</span>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card glass-card reveal-up" data-delay="300">
+          <div class="project-card-header">
+            <div class="project-icon-wrap">
+              <span class="iconify project-icon" data-icon="ph:chart-line-up-bold"></span>
+            </div>
+            <div class="project-links">
+              <!-- REPLACE: Add actual GitHub link -->
+              <a href="https://github.com/vimalkumar-GVK" target="_blank" rel="noopener" class="proj-link" aria-label="GitHub Repository" title="GitHub">
+                <span class="iconify" data-icon="ph:github-logo-bold"></span>
+              </a>
+
+            </div>
+          </div>
+          <div class="project-year">2026</div>
+          <h3 class="project-title">Student Performance Analysis</h3>
+          <p class="project-desc">
+            A data visualization dashboard built in Python that analyzes and presents student academic 
+            performance trends using interactive charts. Helps educators identify at-risk students and 
+            track progress across subjects using matplotlib and pandas.
+          </p>
+          <div class="project-tags">
+            <span class="tag tag-tech">Python</span>
+            <span class="tag tag-tech">Data Viz</span>
+            <span class="tag tag-tech">Pandas</span>
+            <span class="tag tag-tech">Matplotlib</span>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card glass-card reveal-up" data-delay="400">
+          <div class="project-card-header">
+            <div class="project-icon-wrap">
+              <span class="iconify project-icon" data-icon="ph:calculator-bold"></span>
+            </div>
+            <div class="project-links">
+              <!-- REPLACE: Add actual GitHub link -->
+              <a href="https://github.com/vimalkumar-GVK" target="_blank" rel="noopener" class="proj-link" aria-label="GitHub Repository" title="GitHub">
+                <span class="iconify" data-icon="ph:github-logo-bold"></span>
+              </a>
+
+            </div>
+          </div>
+          <div class="project-year">2026</div>
+          <h3 class="project-title">Calculator</h3>
+          <p class="project-desc">
+            A feature-rich desktop calculator application built with Python's Tkinter library. 
+            Supports standard arithmetic, history logging, and a clean dark-mode UI with keyboard 
+            input support — demonstrating GUI development proficiency.
+          </p>
+          <div class="project-tags">
+            <span class="tag tag-tech">Python</span>
+            <span class="tag tag-tech">Tkinter</span>
+            <span class="tag tag-tech">GUI</span>
+            <span class="tag tag-tech">Desktop App</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ INTERNSHIPS SECTION ═══════════════════ -->
+  <section class="section section-alt" id="internships" data-section-name="Internships">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">Experience</span>
+        <h2 class="section-title">Internship <span class="accent">Journey</span></h2>
+        <p class="section-subtitle">Hands-on industry experience shaping my professional foundation</p>
+      </div>
+
+      <div class="internships-timeline">
+        <div class="timeline-spine"></div>
+
+        <!-- Internship 1 -->
+        <div class="timeline-entry reveal-left" data-delay="100">
+          <div class="timeline-marker">
+            <span class="iconify" data-icon="ph:code-bold"></span>
+          </div>
+          <div class="timeline-card glass-card">
+            <div class="intern-header">
+              <div>
+                <h3 class="intern-role">Web Development Intern</h3>
+                <span class="intern-company">Cyfotok</span>
+                <span class="intern-location">
+                  <span class="iconify" data-icon="ph:map-pin-fill"></span> Coimbatore
+                </span>
+              </div>
+              <div class="intern-badge">Internship</div>
+            </div>
+            <p class="intern-desc">
+              Gained hands-on experience designing and developing responsive web interfaces. 
+              Worked on live client projects implementing HTML, CSS, and JavaScript best practices. 
+              Collaborated with the development team to deliver user-friendly web solutions on schedule.
+            </p>
+            <div class="intern-tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">Web Design</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Internship 2 -->
+        <div class="timeline-entry right reveal-right" data-delay="200">
+          <div class="timeline-marker">
+            <span class="iconify" data-icon="ph:chart-bar-bold"></span>
+          </div>
+          <div class="timeline-card glass-card">
+            <div class="intern-header">
+              <div>
+                <h3 class="intern-role">Python with Data Analytics Intern</h3>
+                <span class="intern-company">Mechpro Technologies</span>
+                <span class="intern-location">
+                  <span class="iconify" data-icon="ph:map-pin-fill"></span> Coimbatore
+                </span>
+              </div>
+              <div class="intern-badge">Internship</div>
+            </div>
+            <p class="intern-desc">
+              Applied Python scripting and data analytics techniques on real datasets. 
+              Performed data cleaning, exploratory data analysis (EDA), and visualization tasks. 
+              Built small automation scripts and contributed to data-driven reporting pipelines.
+            </p>
+            <div class="intern-tags">
+              <span class="tag">Python</span>
+              <span class="tag">Data Analytics</span>
+              <span class="tag">Pandas</span>
+              <span class="tag">Matplotlib</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Internship 3 -->
+        <div class="timeline-entry reveal-left" data-delay="300">
+          <div class="timeline-marker">
+            <span class="iconify" data-icon="ph:cloud-bold"></span>
+          </div>
+          <div class="timeline-card glass-card">
+            <div class="intern-header">
+              <div>
+                <h3 class="intern-role">Cloud Computing Intern</h3>
+                <span class="intern-company">Net Tel Solutions</span>
+                <span class="intern-location">
+                  <span class="iconify" data-icon="ph:map-pin-fill"></span> Coimbatore
+                </span>
+              </div>
+              <div class="intern-badge">Internship</div>
+            </div>
+            <p class="intern-desc">
+              Gained practical exposure to cloud infrastructure concepts and services. 
+              Worked on cloud deployment, resource management, and network configuration tasks. 
+              Developed hands-on skills in cloud architecture and best practices for scalable, 
+              reliable cloud-based solutions.
+            </p>
+            <div class="intern-tags">
+              <span class="tag">Cloud Computing</span>
+              <span class="tag">Networking</span>
+              <span class="tag">Infrastructure</span>
+              <span class="tag">Cloud Services</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CERTIFICATIONS SECTION ═══════════════════ -->
+  <section class="section" id="certifications" data-section-name="Certifications">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">Certifications</span>
+        <h2 class="section-title">Credentials <span class="accent">Gallery</span></h2>
+        <p class="section-subtitle">Validated learning milestones from top platforms</p>
+      </div>
+
+      <div class="certs-grid">
+
+        <div class="cert-card glass-card reveal-up" data-delay="100">
+          <div class="cert-issuer-logo" style="--cert-color: #0056D2;">
+            <span class="iconify" data-icon="simple-icons:coursera"></span>
+          </div>
+          <div class="cert-body">
+            <span class="cert-issuer-name">Coursera</span>
+            <h3 class="cert-title">Machine Learning</h3>
+            <p class="cert-desc">Foundational ML algorithms, supervised/unsupervised learning, and model evaluation techniques.</p>
+
+          </div>
+        </div>
+
+        <div class="cert-card glass-card reveal-up" data-delay="200">
+          <div class="cert-issuer-logo" style="--cert-color: #f97316;">
+            <span class="iconify" data-icon="simple-icons:simplenote"></span>
+          </div>
+          <div class="cert-body">
+            <span class="cert-issuer-name">Simplilearn</span>
+            <h3 class="cert-title">Data Structures and Algorithms</h3>
+            <p class="cert-desc">Comprehensive DSA training covering arrays, trees, graphs, sorting, and dynamic programming.</p>
+
+          </div>
+        </div>
+
+        <div class="cert-card glass-card reveal-up" data-delay="300">
+          <div class="cert-issuer-logo" style="--cert-color: #0056D2;">
+            <span class="iconify" data-icon="simple-icons:coursera"></span>
+          </div>
+          <div class="cert-body">
+            <span class="cert-issuer-name">Coursera</span>
+            <h3 class="cert-title">Web App with Python and Flask</h3>
+            <p class="cert-desc">Building and deploying web applications using the Flask micro-framework with routing, templates, and REST APIs.</p>
+
+          </div>
+        </div>
+
+        <div class="cert-card glass-card reveal-up" data-delay="400">
+          <div class="cert-issuer-logo" style="--cert-color: #0056D2;">
+            <span class="iconify" data-icon="simple-icons:coursera"></span>
+          </div>
+          <div class="cert-body">
+            <span class="cert-issuer-name">Coursera</span>
+            <h3 class="cert-title">Internet of Things (IoT)</h3>
+            <p class="cert-desc">Core IoT concepts including sensors, embedded systems, networking, and building connected device prototypes.</p>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ ACHIEVEMENTS SECTION ═══════════════════ -->
+  <section class="section section-alt" id="achievements" data-section-name="Achievements">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">Achievements</span>
+        <h2 class="section-title">Milestones &amp; <span class="accent">Awards</span></h2>
+        <p class="section-subtitle">Recognition earned through dedication and competitive spirit</p>
+      </div>
+
+      <div class="achievements-grid">
+
+        <div class="achievement-card glass-card reveal-up" data-delay="100">
+          <div class="achievement-icon-wrap gold">
+            <span class="iconify" data-icon="ph:trophy-bold"></span>
+          </div>
+          <div class="achievement-content">
+            <h3>Rank Holder</h3>
+            <p>Recognized as a top-performing student in B.Sc Information Technology at Rathinam College of Arts and Science, Coimbatore.</p>
+            <div class="achievement-meta">
+              <span class="achievement-badge gold-badge">🏆 Academic Excellence</span>
+              <span class="achievement-org">Rathinam College</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="achievement-card glass-card reveal-up" data-delay="200">
+          <div class="achievement-icon-wrap silver">
+            <span class="iconify" data-icon="ph:medal-bold"></span>
+          </div>
+          <div class="achievement-content">
+            <h3>Runner-up — Futurex 2K26 Vibe-a-thon</h3>
+            <p>Secured 2nd place in the Vibe-a-thon event at Futurex 2K26, demonstrating creative and technical prowess under competitive conditions.</p>
+            <div class="achievement-meta">
+              <span class="achievement-badge silver-badge">🥈 Runner-up</span>
+              <span class="achievement-org">Futurex 2K26</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="achievement-card glass-card reveal-up" data-delay="300">
+          <div class="achievement-icon-wrap teal">
+            <span class="iconify" data-icon="ph:lightning-bold"></span>
+          </div>
+          <div class="achievement-content">
+            <h3>Participant — KreativeGenesis 2026 Hackathon</h3>
+            <p>Competed in KreativeGenesis 2026, showcasing innovative problem-solving and collaborative development skills in a hackathon environment.</p>
+            <div class="achievement-meta">
+              <span class="achievement-badge teal-badge">⚡ Hackathon</span>
+              <span class="achievement-org">KreativeGenesis 2026</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="achievement-card glass-card reveal-up" data-delay="400">
+          <div class="achievement-icon-wrap teal">
+            <span class="iconify" data-icon="ph:brain-bold"></span>
+          </div>
+          <div class="achievement-content">
+            <h3>Participant — Futurex 2K26 Prompt-a-thon</h3>
+            <p>Participated in the AI Prompt-a-thon at Futurex 2K26, engaging with cutting-edge AI prompt engineering challenges and generative AI tools.</p>
+            <div class="achievement-meta">
+              <span class="achievement-badge teal-badge">🤖 AI Challenge</span>
+              <span class="achievement-org">Futurex 2K26</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="achievement-card glass-card reveal-up" data-delay="500">
+          <div class="achievement-icon-wrap teal">
+            <span class="iconify" data-icon="ph:code-bold"></span>
+          </div>
+          <div class="achievement-content">
+            <h3>Participant — AlgoRhythm'26 Hackathon</h3>
+            <p>Took part in AlgoRhythm'26, tackling algorithm and coding challenges, strengthening competitive programming and logical reasoning skills.</p>
+            <div class="achievement-meta">
+              <span class="achievement-badge teal-badge">💻 Competitive Coding</span>
+              <span class="achievement-org">AlgoRhythm'26</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CONTACT SECTION ═══════════════════ -->
+  <section class="section" id="contact" data-section-name="Contact">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">Contact</span>
+        <h2 class="section-title">Let's <span class="accent">Connect</span></h2>
+        <p class="section-subtitle">Got a project, opportunity, or just want to say hello? I'd love to hear from you.</p>
+      </div>
+
+      <div class="contact-centered reveal-up">
+
+        <p class="contact-intro">
+          Whether it's a collaboration, an internship offer, or just a conversation about tech —
+          my inbox is always open. Let's build something great together.
+        </p>
+
+        <div class="contact-cards">
+          <a href="mailto:vimalkumarg2366@gmail.com" class="contact-card glass-card">
+            <div class="cc-icon email-icon">
+              <span class="iconify" data-icon="ph:envelope-simple-bold"></span>
+            </div>
+            <div class="cc-info">
+              <span class="cc-label">Email</span>
+              <span class="cc-value">vimalkumarg2366@gmail.com</span>
+            </div>
+            <span class="iconify cc-arrow" data-icon="ph:arrow-right-bold"></span>
+          </a>
+
+          <a href="tel:+916380773950" class="contact-card glass-card">
+            <div class="cc-icon phone-icon">
+              <span class="iconify" data-icon="ph:phone-bold"></span>
+            </div>
+            <div class="cc-info">
+              <span class="cc-label">Phone</span>
+              <span class="cc-value">+91 63807 73950</span>
+            </div>
+            <span class="iconify cc-arrow" data-icon="ph:arrow-right-bold"></span>
+          </a>
+
+          <a href="https://linkedin.com/in/Vimal-Kumar-G2366" target="_blank" rel="noopener" class="contact-card glass-card">
+            <div class="cc-icon linkedin-icon">
+              <span class="iconify" data-icon="ph:linkedin-logo-bold"></span>
+            </div>
+            <div class="cc-info">
+              <span class="cc-label">LinkedIn</span>
+              <span class="cc-value">Vimal-Kumar-G2366</span>
+            </div>
+            <span class="iconify cc-arrow" data-icon="ph:arrow-right-bold"></span>
+          </a>
+
+          <a href="https://github.com/vimalkumar-GVK" target="_blank" rel="noopener" class="contact-card glass-card">
+            <div class="cc-icon github-icon">
+              <span class="iconify" data-icon="ph:github-logo-bold"></span>
+            </div>
+            <div class="cc-info">
+              <span class="cc-label">GitHub</span>
+              <span class="cc-value">vimalkumar-GVK</span>
+            </div>
+            <span class="iconify cc-arrow" data-icon="ph:arrow-right-bold"></span>
+          </a>
+        </div>
+
+        <div class="location-tag">
+          <span class="iconify" data-icon="ph:map-pin-fill"></span>
+          <span>Based in <strong>Coimbatore, Tamil Nadu</strong>, India</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-logo">
+        <span class="logo-bracket">&lt;</span>VK<span class="logo-bracket">/&gt;</span>
+      </div>
+      <p class="footer-text">
+        Designed &amp; Built by <strong>Vimal Kumar G</strong> · 2026
+      </p>
+      <div class="footer-socials">
+        <a href="https://github.com/vimalkumar-GVK" target="_blank" rel="noopener" aria-label="GitHub">
+          <span class="iconify" data-icon="ph:github-logo-bold"></span>
+        </a>
+        <a href="https://linkedin.com/in/Vimal-Kumar-G2366" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <span class="iconify" data-icon="ph:linkedin-logo-bold"></span>
+        </a>
+        <a href="mailto:vimalkumarg2366@gmail.com" aria-label="Email">
+          <span class="iconify" data-icon="ph:envelope-simple-bold"></span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+
+
+  <script src="main.js"></script>
+</body>
+</html>
