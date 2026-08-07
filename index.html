@@ -14,11 +14,69 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 
   <!-- Icons via Iconify CDN -->
-  <script src="https://code.iconify.design/iconify.min.js" defer crossorigin="anonymous"></script>
+  <script src="https://code.iconify.design/3/3.1.0/iconify.min.js" defer crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+  <!-- Computer graphics background (decorative) -->
+  <div class="cg-bg" aria-hidden="true">
+    <svg class="cg-svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gA" x1="0" x2="1">
+          <stop offset="0%" stop-color="#00d4aa" stop-opacity="0.9">
+            <animate attributeName="stop-opacity" values="0.9;0.6;0.9" dur="8s" repeatCount="indefinite" />
+          </stop>
+          <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.9">
+            <animate attributeName="stop-opacity" values="0.9;0.6;0.9" dur="10s" repeatCount="indefinite" />
+          </stop>
+        </linearGradient>
+        <linearGradient id="gB" x1="0" x2="1">
+          <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.7" />
+          <stop offset="100%" stop-color="#00d4aa" stop-opacity="0.6" />
+        </linearGradient>
+      </defs>
+      <g>
+        <polygon class="cg-shape cg-shape-a" points="0,0 800,180 1600,0 1600,900 0,900" fill="url(#gA)" />
+        <polygon class="cg-shape cg-shape-b" points="0,0 400,360 1000,1200 0,900" fill="url(#gB)" opacity="0.9" />
+        <polygon class="cg-shape cg-shape-c" points="1600,0 1200,300 1600,900" fill="#06263a" opacity="0.5" />
+      </g>
+    </svg>
+  </div>
+
+  <!-- SVG sprite for critical icons (inlined to avoid CDN issues) -->
+  <svg aria-hidden="true" style="position:absolute; width:0; height:0; overflow:hidden;">
+    <symbol id="icon-folder" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M3 7a2 2 0 0 1 2-2h3l2 2h7a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/>
+    </symbol>
+    <symbol id="icon-download" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 3v10m0 0l-4-4m4 4l4-4M5 21h14v-2H5v2z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </symbol>
+    <symbol id="icon-chat" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M21 15a2 2 0 0 1-2 2H8l-5 3V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10z"/>
+    </symbol>
+    <symbol id="icon-github" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.5-1.2-1.3-1.5-1.3-1.5-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1 1.6-.7 1.9-1 .1-.8.4-1.4.7-1.7-2.6-.3-5.3-1.3-5.3-5.9 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.4.1-2.9 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.5.2 2.6.1 2.9.7.8 1.2 1.8 1.2 3.1 0 4.6-2.7 5.6-5.3 5.9.4.3.8 1 .8 2v3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/>
+    </symbol>
+    <symbol id="icon-mail" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M2 6.5v11A2.5 2.5 0 0 0 4.5 20h15A2.5 2.5 0 0 0 22 17.5v-11A2.5 2.5 0 0 0 19.5 4h-15A2.5 2.5 0 0 0 2 6.5z"/>
+      <path fill="currentColor" d="M3 6l9 6 9-6" stroke="currentColor" stroke-width="0.6" fill="none"/>
+    </symbol>
+    <symbol id="icon-phone" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M6.6 10.2a15.1 15.1 0 0 0 7.2 7.2l1.8-1.8a1 1 0 0 1 1.1-.2c1.2.5 2.6.8 4 .8a1 1 0 0 1 1 1v3.5a1 1 0 0 1-1 1A19 19 0 0 1 3 5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.4.3 2.8.8 4a1 1 0 0 1-.2 1.1L6.6 10.2z"/>
+    </symbol>
+    <symbol id="icon-pin" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 2a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.5 6-12a6 6 0 0 0-6-6zm0 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
+    </symbol>
+    <symbol id="icon-linkedin" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.6v1.6h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6v7h-4v-6.1c0-1.5 0-3.5-2.1-3.5-2.1 0-2.4 1.6-2.4 3.4V21H10z"/>
+    </symbol>
+    <symbol id="icon-project" viewBox="0 0 24 24">
+      <rect x="3" y="3" width="18" height="18" rx="4" fill="currentColor" />
+      <rect x="7" y="7" width="10" height="10" rx="2" fill="#04242f" />
+    </symbol>
+  </svg>
 
   <!-- ═══════════════════ STICKY NAVBAR ═══════════════════ -->
   <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
@@ -67,7 +125,7 @@
       <div class="hero-left reveal-left">
         <div class="hero-badge">
           <span class="badge-pulse"></span>
-          <span>Available for Opportunities</span>
+          <span>Aspiring for Opportunities</span>
         </div>
         <h1 class="hero-name">Vimal Kumar G</h1>
         <p class="hero-title">
@@ -81,12 +139,17 @@
         </p>
         <div class="hero-cta">
           <a href="#projects" class="btn btn-primary" id="ctaProjects">
-            <span class="iconify" data-icon="ph:folder-open-bold"></span>
+            <svg class="icon icon-btn" aria-hidden="true"><use href="#icon-folder"></use></svg>
             View Projects
           </a>
 
+          <a href="assets/Vimal_Kumar_Resume.pdf" class="btn btn-outline" id="resumeBtn" target="_blank" rel="noopener" aria-label="Open resume PDF">
+            <svg class="icon icon-btn" aria-hidden="true"><use href="#icon-download"></use></svg>
+            Resume
+          </a>
+
           <a href="#contact" class="btn btn-ghost" id="ctaContact">
-            <span class="iconify" data-icon="ph:chat-circle-dots-bold"></span>
+            <svg class="icon icon-btn" aria-hidden="true"><use href="#icon-chat"></use></svg>
             Contact Me
           </a>
         </div>
@@ -152,7 +215,7 @@
             My core strengths are <strong>analytical thinking</strong>, a <strong>collaborative mindset</strong>, and the ability to rapidly adapt to new challenges.
           </p>
           <div class="hero-location">
-            <span class="iconify" data-icon="ph:map-pin-fill"></span>
+            <svg class="icon" aria-hidden="true"><use href="#icon-pin"></use></svg>
             Coimbatore, Tamil Nadu
           </div>
         </div>
@@ -194,11 +257,11 @@
           <h3>Quick Info</h3>
           <div class="info-list">
             <div class="info-item">
-              <span class="iconify" data-icon="ph:envelope-simple-bold"></span>
+              <svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg>
               <a href="mailto:vimalkumarg2366@gmail.com">vimalkumarg2366@gmail.com</a>
             </div>
             <div class="info-item">
-              <span class="iconify" data-icon="ph:phone-bold"></span>
+              <svg class="icon" aria-hidden="true"><use href="#icon-phone"></use></svg>
               <a href="tel:+916380773950">+91 63807 73950</a>
             </div>
             <div class="info-item">
@@ -206,11 +269,11 @@
               <span>Coimbatore, Tamil Nadu</span>
             </div>
             <div class="info-item">
-              <span class="iconify" data-icon="ph:linkedin-logo-bold"></span>
+              <svg class="icon" aria-hidden="true"><use href="#icon-linkedin"></use></svg>
               <a href="https://linkedin.com/in/Vimal-Kumar-G2366" target="_blank" rel="noopener">Vimal-Kumar-G2366</a>
             </div>
             <div class="info-item">
-              <span class="iconify" data-icon="ph:github-logo-bold"></span>
+              <svg class="icon" aria-hidden="true"><use href="#icon-github"></use></svg>
               <a href="https://github.com/vimalkumar-GVK" target="_blank" rel="noopener">vimalkumar-GVK</a>
             </div>
           </div>
@@ -228,7 +291,7 @@
               <div class="edu-content">
                 <div class="edu-year">2024 – 2027</div>
                 <strong>B.Sc Information Technology</strong>
-                <span>Rathinam College of Arts and Science, Coimbatore</span>
+                <span>Rathinam Global Deemed To Be University, Coimbatore</span>
                 <div class="edu-grade">CGPA: <em>7.81</em></div>
               </div>
             </div>
@@ -287,10 +350,10 @@
           <h3 class="skills-group-title">Technical Proficiency</h3>
           <div class="skill-bars-list">
 
-            <div class="skill-bar-item" data-label="Python" data-level="85">
+            <div class="skill-bar-item" data-label="Java" data-level="85">
               <div class="skill-bar-meta">
                 <span class="skill-name">
-                  <span class="iconify skill-icon" data-icon="logos:python"></span> Python
+                  <span class="iconify skill-icon" data-icon="logos:java"></span> Java
                 </span>
                 <span class="skill-pct">85%</span>
               </div>
@@ -299,10 +362,10 @@
               </div>
             </div>
 
-            <div class="skill-bar-item" data-label="Java" data-level="72">
+            <div class="skill-bar-item" data-label="Python" data-level="72">
               <div class="skill-bar-meta">
                 <span class="skill-name">
-                  <span class="iconify skill-icon" data-icon="logos:java"></span> Java
+                  <span class="iconify skill-icon" data-icon="logos:python"></span> Python
                 </span>
                 <span class="skill-pct">72%</span>
               </div>
@@ -354,13 +417,13 @@
         <div class="skills-icons reveal-right">
           <h3 class="skills-group-title">Tech Stack</h3>
           <div class="tech-grid">
-            <div class="tech-card" data-tooltip="Python">
-              <span class="iconify tech-icon" data-icon="logos:python"></span>
-              <span>Python</span>
-            </div>
             <div class="tech-card" data-tooltip="Java">
               <span class="iconify tech-icon" data-icon="logos:java"></span>
               <span>Java</span>
+            </div>
+            <div class="tech-card" data-tooltip="Python">
+              <span class="iconify tech-icon" data-icon="logos:python"></span>
+              <span>Python</span>
             </div>
             <div class="tech-card" data-tooltip="HTML5">
               <span class="iconify tech-icon" data-icon="logos:html-5"></span>
@@ -379,7 +442,7 @@
               <span>Arduino</span>
             </div>
             <div class="tech-card" data-tooltip="OpenCV">
-              <span class="iconify tech-icon" data-icon="simple-icons:opencv"></span>
+              <span class="iconify tech-icon" data-icon="ph:camera"></span>
               <span>OpenCV</span>
             </div>
             <div class="tech-card" data-tooltip="Git">
@@ -387,7 +450,7 @@
               <span>Git</span>
             </div>
             <div class="tech-card" data-tooltip="GitHub">
-              <span class="iconify tech-icon" data-icon="mdi:github"></span>
+              <svg class="icon tech-icon" aria-hidden="true"><use href="#icon-github"></use></svg>
               <span>GitHub</span>
             </div>
             <div class="tech-card" data-tooltip="VS Code">
@@ -426,12 +489,12 @@
         <div class="project-card glass-card reveal-up" data-delay="100">
           <div class="project-card-header">
             <div class="project-icon-wrap">
-              <span class="iconify project-icon" data-icon="ph:hand-bold"></span>
+              <svg class="project-icon-svg" aria-hidden="true"><use href="#icon-project"></use></svg>
             </div>
             <div class="project-links">
               <!-- REPLACE: Add actual GitHub link -->
               <a href="https://github.com/vimalkumar-GVK" target="_blank" rel="noopener" class="proj-link" aria-label="GitHub Repository" title="GitHub">
-                <span class="iconify" data-icon="ph:github-logo-bold"></span>
+                <svg class="icon" aria-hidden="true"><use href="#icon-github"></use></svg>
               </a>
 
             </div>
@@ -455,12 +518,12 @@
         <div class="project-card glass-card reveal-up" data-delay="200">
           <div class="project-card-header">
             <div class="project-icon-wrap">
-              <span class="iconify project-icon" data-icon="ph:calendar-check-bold"></span>
+              <svg class="project-icon-svg" aria-hidden="true"><use href="#icon-project"></use></svg>
             </div>
             <div class="project-links">
               <!-- REPLACE: Add actual GitHub link -->
               <a href="https://github.com/vimalkumar-GVK" target="_blank" rel="noopener" class="proj-link" aria-label="GitHub Repository" title="GitHub">
-                <span class="iconify" data-icon="ph:github-logo-bold"></span>
+                <svg class="icon" aria-hidden="true"><use href="#icon-github"></use></svg>
               </a>
 
             </div>
@@ -484,7 +547,7 @@
         <div class="project-card glass-card reveal-up" data-delay="300">
           <div class="project-card-header">
             <div class="project-icon-wrap">
-              <span class="iconify project-icon" data-icon="ph:chart-line-up-bold"></span>
+              <svg class="project-icon-svg" aria-hidden="true"><use href="#icon-project"></use></svg>
             </div>
             <div class="project-links">
               <!-- REPLACE: Add actual GitHub link -->
@@ -513,7 +576,7 @@
         <div class="project-card glass-card reveal-up" data-delay="400">
           <div class="project-card-header">
             <div class="project-icon-wrap">
-              <span class="iconify project-icon" data-icon="ph:calculator-bold"></span>
+              <svg class="project-icon-svg" aria-hidden="true"><use href="#icon-project"></use></svg>
             </div>
             <div class="project-links">
               <!-- REPLACE: Add actual GitHub link -->
@@ -535,6 +598,32 @@
             <span class="tag tag-tech">Tkinter</span>
             <span class="tag tag-tech">GUI</span>
             <span class="tag tag-tech">Desktop App</span>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-card glass-card reveal-up" data-delay="500">
+          <div class="project-card-header">
+            <div class="project-icon-wrap">
+              <svg class="project-icon-svg" aria-hidden="true"><use href="#icon-project"></use></svg>
+            </div>
+            <div class="project-links">
+              <!-- REPLACE: Add actual GitHub link -->
+              <a href="https://github.com/vimalkumar-GVK" target="_blank" rel="noopener" class="proj-link" aria-label="GitHub Repository" title="GitHub">
+                <span class="iconify" data-icon="ph:github-logo-bold"></span>
+              </a>
+
+            </div>
+          </div>
+          <div class="project-year">2026</div>
+          <h3 class="project-title">Attendance Tracker by QR</h3>
+          <p class="project-desc">
+            A comprehensive attendance tracking system that uses QR code scanning to seamlessly mark student attendance. Features an administrative backend to export attendance data directly as an Excel document for easy reporting.
+          </p>
+          <div class="project-tags">
+            <span class="tag tag-tech">Java</span>
+            <span class="tag tag-tech">HTML</span>
+            <span class="tag tag-tech">Spring Boot</span>
           </div>
         </div>
 
@@ -729,10 +818,10 @@
           </div>
           <div class="achievement-content">
             <h3>Rank Holder</h3>
-            <p>Recognized as a top-performing student in B.Sc Information Technology at Rathinam College of Arts and Science, Coimbatore.</p>
+            <p>Recognized as a top-performing student in B.Sc Information Technology at Rathinam Global Deemed To Be University, Coimbatore.</p>
             <div class="achievement-meta">
               <span class="achievement-badge gold-badge">🏆 Academic Excellence</span>
-              <span class="achievement-org">Rathinam College</span>
+              <span class="achievement-org">Rathinam Global Deemed To Be University</span>
             </div>
           </div>
         </div>
@@ -793,6 +882,48 @@
           </div>
         </div>
 
+        <div class="achievement-card glass-card reveal-up" data-delay="600">
+          <div class="achievement-icon-wrap silver">
+            <span class="iconify" data-icon="ph:medal-bold"></span>
+          </div>
+          <div class="achievement-content">
+            <h3>Runner-up — Idea Forge</h3>
+            <p>Secured Runner-up at Idea Forge, demonstrating creative problem-solving and presentation skills.</p>
+            <div class="achievement-meta">
+              <span class="achievement-badge silver-badge">🥈 Runner-up</span>
+              <span class="achievement-org">Idea Forge</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="achievement-card glass-card reveal-up" data-delay="700">
+          <div class="achievement-icon-wrap teal">
+            <span class="iconify" data-icon="ph:lightning-bold"></span>
+          </div>
+          <div class="achievement-content">
+            <h3>Participant — Karpagam National Hackathon 2026</h3>
+            <p>Participated in the Karpagam National Hackathon 2026, collaborating on rapid prototyping and problem-solving under time constraints.</p>
+            <div class="achievement-meta">
+              <span class="achievement-badge teal-badge">⚡ Hackathon</span>
+              <span class="achievement-org">Karpagam National Hackathon 2026</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="achievement-card glass-card reveal-up" data-delay="800">
+          <div class="achievement-icon-wrap teal">
+            <span class="iconify" data-icon="ph:lightning-bold"></span>
+          </div>
+          <div class="achievement-content">
+            <h3>Participant — Intro Fest Hackathon</h3>
+            <p>Participated in the Intro Fest Hackathon, contributing to team-based development and rapid iteration on solutions.</p>
+            <div class="achievement-meta">
+              <span class="achievement-badge teal-badge">⚡ Hackathon</span>
+              <span class="achievement-org">Intro Fest</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -849,7 +980,7 @@
 
           <a href="https://github.com/vimalkumar-GVK" target="_blank" rel="noopener" class="contact-card glass-card">
             <div class="cc-icon github-icon">
-              <span class="iconify" data-icon="ph:github-logo-bold"></span>
+              <svg class="icon" aria-hidden="true"><use href="#icon-github"></use></svg>
             </div>
             <div class="cc-info">
               <span class="cc-label">GitHub</span>
@@ -894,5 +1025,22 @@
 
 
   <script src="main.js"></script>
+  <!-- Icon fallback: if Iconify fails to render any icon, replace with a simple SVG placeholder -->
+  <script>
+    (function(){
+      // Run after load to give Iconify a chance to render
+      function applyFallback(){
+        document.querySelectorAll('.iconify').forEach(function(el){
+          // If Iconify didn't replace the span with an SVG, insert a fallback
+          if (!el.querySelector('svg')){
+            el.innerHTML = '\n              <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">\n                <rect x="1.5" y="1.5" width="25" height="25" rx="6" stroke="rgba(0,212,170,0.18)" stroke-width="2" fill="rgba(6,38,58,0.6)" />\n              </svg>';
+            el.classList.add('icon-fallback');
+          }
+        });
+      }
+      if (document.readyState === 'complete') applyFallback();
+      else window.addEventListener('load', applyFallback);
+    })();
+  </script>
 </body>
 </html>

@@ -43,6 +43,7 @@
 
   --nav-height:    68px;
   --container:     1160px;
+  --gutter:        32px; /* consistent horizontal padding */
 }
 
 /* ── Reset & Base ── */
@@ -78,7 +79,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   width: 100%;
   max-width: var(--container);
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 var(--gutter);
 }
 
 .accent { color: var(--accent); }
@@ -115,7 +116,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   height: 100%;
   max-width: var(--container);
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 var(--gutter);
 }
 
 .nav-logo {
@@ -218,7 +219,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    SECTION COMMON
    ════════════════════════════════════════════════════════════ */
 .section {
-  padding: 96px 0;
+  padding: 100px 0;
 }
 .section-alt {
   background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
@@ -262,6 +263,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+  padding: 22px; /* consistent inner spacing for cards */
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 .glass-card:hover {
   transform: translateY(-4px);
@@ -274,9 +279,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 24px;
+  padding: 14px 22px;
   border-radius: var(--radius-full);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 0.02em;
   cursor: pointer;
@@ -318,9 +323,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* ── Tags ── */
 .tag {
   display: inline-block;
-  padding: 4px 12px;
+  padding: 6px 14px;
   border-radius: var(--radius-full);
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   background: rgba(0, 212, 170, 0.1);
@@ -377,6 +382,52 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   pointer-events: none;
 }
 
+/* ── Computer Graphics Background (decorative) ── */
+.cg-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.16;
+  mix-blend-mode: screen;
+}
+.cg-svg { width: 100%; height: 100%; display: block; }
+.cg-shape { filter: blur(26px) saturate(1.05); transform-origin: 50% 50%; }
+.cg-shape-a { animation: cgFloatA 20s ease-in-out infinite; }
+.cg-shape-b { animation: cgFloatB 26s ease-in-out infinite; }
+.cg-shape-c { animation: cgFloatC 32s ease-in-out infinite; }
+
+@keyframes cgFloatA {
+  0% { transform: translateY(0) rotate(0deg) scale(1); }
+  50% { transform: translateY(-30px) rotate(0.6deg) scale(1.02); }
+  100% { transform: translateY(0) rotate(0deg) scale(1); }
+}
+@keyframes cgFloatB {
+  0% { transform: translateY(0) rotate(0deg) scale(1); }
+  50% { transform: translateY(-45px) rotate(-0.8deg) scale(1.03); }
+  100% { transform: translateY(0) rotate(0deg) scale(1); }
+}
+@keyframes cgFloatC {
+  0% { transform: translateY(0) rotate(0deg) scale(1); }
+  50% { transform: translateY(20px) rotate(0.4deg) scale(1.01); }
+  100% { transform: translateY(0) rotate(0deg) scale(1); }
+}
+
+/* Icon fallback styling when Iconify cannot load */
+.iconify { display: inline-flex; align-items: center; justify-content: center; vertical-align: middle; }
+.iconify.icon-fallback { width: 44px; height: 44px; background: rgba(6,38,58,0.45); border-radius: 10px; padding: 6px; }
+.iconify.icon-fallback svg { width: 28px; height: 28px; display: block; }
+.project-icon-wrap .iconify.icon-fallback { width: 48px; height: 48px; border-radius: 12px; padding: 8px; }
+
+/* make fallback colors match theme */
+.iconify.icon-fallback svg rect { stroke: rgba(0,212,170,0.18); fill: rgba(6,38,58,0.6); }
+
+/* SVG icon sizing helpers */
+.icon { width: 20px; height: 20px; display: inline-block; vertical-align: middle; fill: var(--accent); }
+.icon.icon-btn { width: 18px; height: 18px; margin-right: 8px; fill: #072026; }
+.project-icon-svg { width: 44px; height: 44px; border-radius: 8px; display: block; }
+.tech-icon { width: 20px; height: 20px; margin-right: 8px; fill: var(--accent); }
+
 /* Orbs */
 .hero-orbs { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
 .orb {
@@ -412,11 +463,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .hero-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  gap: 48px;
   align-items: center;
   max-width: var(--container);
   margin: 0 auto;
-  padding: 60px 24px;
+  padding: 80px var(--gutter);
   width: 100%;
   position: relative;
   z-index: 1;
