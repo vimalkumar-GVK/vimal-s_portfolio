@@ -122,8 +122,15 @@ ul { list-style: none; }
   width: 1.2em; height: 1.2em;
   display: inline-block; vertical-align: middle;
   flex-shrink: 0;
+  fill: currentColor;
 }
 .icon-btn { width: 1.1em; height: 1.1em; }
+
+.iconify {
+  display: inline-block;
+  vertical-align: -0.15em;
+  flex-shrink: 0;
+}
 
 /* ─── 6. BUTTONS ───────────────────────────────────────────── */
 .btn {

@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 
   <!-- Icons via Iconify CDN -->
-  <script src="https://code.iconify.design/3/3.1.0/iconify.min.js" defer crossorigin="anonymous"></script>
+  <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
 
   <!-- Three.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -1050,21 +1050,5 @@
   </footer>
 
   <script src="main.js"></script>
-
-  <!-- Icon fallback -->
-  <script>
-    (function(){
-      function applyFallback(){
-        document.querySelectorAll('.iconify').forEach(function(el){
-          if (!el.querySelector('svg')){
-            el.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" stroke="rgba(99,216,213,0.3)" stroke-width="1.5"/></svg>';
-            el.classList.add('icon-fallback');
-          }
-        });
-      }
-      if (document.readyState === 'complete') applyFallback();
-      else window.addEventListener('load', applyFallback);
-    })();
-  </script>
 </body>
 </html>
