@@ -11,41 +11,34 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 
   <!-- Icons via Iconify CDN -->
   <script src="https://code.iconify.design/3/3.1.0/iconify.min.js" defer crossorigin="anonymous"></script>
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Computer graphics background (decorative) -->
-  <div class="cg-bg" aria-hidden="true">
-    <svg class="cg-svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="gA" x1="0" x2="1">
-          <stop offset="0%" stop-color="#00d4aa" stop-opacity="0.9">
-            <animate attributeName="stop-opacity" values="0.9;0.6;0.9" dur="8s" repeatCount="indefinite" />
-          </stop>
-          <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.9">
-            <animate attributeName="stop-opacity" values="0.9;0.6;0.9" dur="10s" repeatCount="indefinite" />
-          </stop>
-        </linearGradient>
-        <linearGradient id="gB" x1="0" x2="1">
-          <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.7" />
-          <stop offset="100%" stop-color="#00d4aa" stop-opacity="0.6" />
-        </linearGradient>
-      </defs>
-      <g>
-        <polygon class="cg-shape cg-shape-a" points="0,0 800,180 1600,0 1600,900 0,900" fill="url(#gA)" />
-        <polygon class="cg-shape cg-shape-b" points="0,0 400,360 1000,1200 0,900" fill="url(#gB)" opacity="0.9" />
-        <polygon class="cg-shape cg-shape-c" points="1600,0 1200,300 1600,900" fill="#06263a" opacity="0.5" />
-      </g>
-    </svg>
-  </div>
+  <!-- ═══ CUSTOM CURSOR ═══ -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
 
-  <!-- SVG sprite for critical icons (inlined to avoid CDN issues) -->
+  <!-- ═══ SCROLL PROGRESS ═══ -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- SVG sprite for critical icons -->
   <svg aria-hidden="true" style="position:absolute; width:0; height:0; overflow:hidden;">
     <symbol id="icon-folder" viewBox="0 0 24 24">
       <path fill="currentColor" d="M3 7a2 2 0 0 1 2-2h3l2 2h7a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/>
@@ -71,10 +64,6 @@
     </symbol>
     <symbol id="icon-linkedin" viewBox="0 0 24 24">
       <path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.6v1.6h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6v7h-4v-6.1c0-1.5 0-3.5-2.1-3.5-2.1 0-2.4 1.6-2.4 3.4V21H10z"/>
-    </symbol>
-    <symbol id="icon-project" viewBox="0 0 24 24">
-      <rect x="3" y="3" width="18" height="18" rx="4" fill="currentColor" />
-      <rect x="7" y="7" width="10" height="10" rx="2" fill="#04242f" />
     </symbol>
   </svg>
 
@@ -113,47 +102,53 @@
 
   <!-- ═══════════════════ HERO SECTION ═══════════════════ -->
   <section class="hero" id="hero" data-section-name="Hero">
-    <div class="hero-bg-grid"></div>
-    <div class="hero-orbs">
-      <div class="orb orb-1"></div>
-      <div class="orb orb-2"></div>
-      <div class="orb orb-3"></div>
-    </div>
+    <!-- Three.js canvas injected here by JS -->
+    <canvas id="heroCanvas" aria-hidden="true"></canvas>
+
+    <!-- Ambient glow orbs -->
+    <div class="hero-orb hero-orb-1" aria-hidden="true"></div>
+    <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
+    <div class="hero-orb hero-orb-3" aria-hidden="true"></div>
+
+    <!-- Grid overlay -->
+    <div class="hero-grid" aria-hidden="true"></div>
+
     <div class="hero-container">
 
-      <!-- LEFT HALF: Text Content -->
-      <div class="hero-left reveal-left">
-        <div class="hero-badge">
+      <!-- LEFT: Text Content -->
+      <div class="hero-left" id="heroLeft">
+        <div class="hero-badge" id="heroBadge">
           <span class="badge-pulse"></span>
           <span>Aspiring for Opportunities</span>
         </div>
-        <h1 class="hero-name">Vimal Kumar G</h1>
-        <p class="hero-title">
+        <h1 class="hero-name" id="heroName">
+          <span class="hero-name-line">Vimal</span>
+          <span class="hero-name-line">Kumar G</span>
+        </h1>
+        <p class="hero-title" id="heroTitle">
           <span class="typed-prefix">&gt;_ </span>
           <span id="typedText"></span><span class="typed-cursor">|</span>
         </p>
-        <p class="hero-objective">
-          Passionate B.Sc IT student from Coimbatore with a drive to build impactful digital solutions. 
-          I bridge the gap between creative problem-solving and clean, efficient code — 
+        <p class="hero-objective" id="heroObjective">
+          Passionate B.Sc IT student from Coimbatore with a drive to build impactful digital solutions.
+          I bridge the gap between creative problem-solving and clean, efficient code —
           eager to grow as a Full Stack &amp; Python Developer.
         </p>
-        <div class="hero-cta">
+        <div class="hero-cta" id="heroCta">
           <a href="#projects" class="btn btn-primary" id="ctaProjects">
             <svg class="icon icon-btn" aria-hidden="true"><use href="#icon-folder"></use></svg>
             View Projects
           </a>
-
           <a href="assets/Vimal_Kumar_Resume.pdf" class="btn btn-outline" id="resumeBtn" target="_blank" rel="noopener" aria-label="Open resume PDF">
             <svg class="icon icon-btn" aria-hidden="true"><use href="#icon-download"></use></svg>
             Resume
           </a>
-
           <a href="#contact" class="btn btn-ghost" id="ctaContact">
             <svg class="icon icon-btn" aria-hidden="true"><use href="#icon-chat"></use></svg>
             Contact Me
           </a>
         </div>
-        <div class="hero-stats">
+        <div class="hero-stats" id="heroStats">
           <div class="stat">
             <span class="stat-number">4+</span>
             <span class="stat-label">Projects</span>
@@ -176,15 +171,12 @@
         </div>
       </div>
 
-      <!-- RIGHT HALF: Photo + Description -->
-      <div class="hero-right reveal-right">
+      <!-- RIGHT: Photo -->
+      <div class="hero-right" id="heroRight">
         <div class="photo-wrapper">
-          <!-- ╔══════════════════════════════════════╗
-               ║  REPLACE WITH PROFILE PHOTO          ║
-               ║  Change src to your image path.      ║
-               ║  The id="profilePhoto" lets you      ║
-               ║  target it easily later.             ║
-               ╚══════════════════════════════════════╝ -->
+          <div class="photo-halo photo-halo-1" aria-hidden="true"></div>
+          <div class="photo-halo photo-halo-2" aria-hidden="true"></div>
+          <div class="photo-halo photo-halo-3" aria-hidden="true"></div>
           <div class="photo-frame" id="photoFrame">
             <img
               src="Vimal.jpeg"
@@ -193,21 +185,18 @@
               class="profile-photo"
               onerror="this.style.display='none'; document.getElementById('photoPlaceholder').style.display='flex';"
             />
-            <!-- Photo placeholder shown when no image is set -->
             <div class="photo-placeholder" id="photoPlaceholder">
               <span class="placeholder-initials">VK</span>
-              <span class="placeholder-hint">
-                Add photo to src
-              </span>
             </div>
           </div>
-          <div class="photo-ring ring-a"></div>
-          <div class="photo-ring ring-b"></div>
-          <div class="photo-glow"></div>
+          <!-- Floating tech badges -->
+          <div class="float-badge float-badge-1" aria-hidden="true"><span class="iconify" data-icon="logos:python"></span> Python</div>
+          <div class="float-badge float-badge-2" aria-hidden="true"><span class="iconify" data-icon="logos:java"></span> Java</div>
+          <div class="float-badge float-badge-3" aria-hidden="true"><span class="iconify" data-icon="logos:arduino"></span> IoT</div>
         </div>
 
-        <!-- Personal Description below photo -->
-        <div class="hero-bio-card">
+        <!-- Bio card -->
+        <div class="hero-bio-card" id="heroBioCard">
           <p class="hero-bio">
             I'm a dedicated IT student from Rathinam Deemed To Be University, driven by curiosity and a love for technology.
             I'm actively seeking internships and entry-level roles where I can contribute as a
@@ -223,12 +212,18 @@
 
     </div>
 
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator" aria-hidden="true">
+      <div class="scroll-wheel"></div>
+      <span>Scroll to explore</span>
+    </div>
   </section>
 
   <!-- ═══════════════════ ABOUT SECTION ═══════════════════ -->
   <section class="section" id="about" data-section-name="About Me">
+    <div class="section-glow section-glow-purple" aria-hidden="true"></div>
     <div class="container">
-      <div class="section-header reveal-up">
+      <div class="section-header" id="aboutHeader">
         <span class="section-tag">About</span>
         <h2 class="section-title">About <span class="accent">Me</span></h2>
         <p class="section-subtitle">A passionate tech enthusiast on a journey to make an impact</p>
@@ -236,21 +231,21 @@
 
       <div class="about-grid">
         <!-- Career Objective -->
-        <div class="about-objective glass-card reveal-up" data-delay="100">
+        <div class="about-objective glass-card about-card" id="aboutObjective">
           <div class="card-icon-wrap">
             <span class="iconify card-icon" data-icon="ph:target-bold"></span>
           </div>
           <h3>Career Objective</h3>
           <p>
-            To secure a challenging role as a Full Stack or Python Developer where I can leverage my 
-            academic knowledge and hands-on project experience to create innovative, scalable software solutions. 
-            I aim to continuously grow, contribute meaningfully to a team, and bridge theoretical knowledge 
+            To secure a challenging role as a Full Stack or Python Developer where I can leverage my
+            academic knowledge and hands-on project experience to create innovative, scalable software solutions.
+            I aim to continuously grow, contribute meaningfully to a team, and bridge theoretical knowledge
             with real-world application.
           </p>
         </div>
 
         <!-- Quick Info -->
-        <div class="about-info glass-card reveal-up" data-delay="200">
+        <div class="about-info glass-card about-card" id="aboutInfo">
           <div class="card-icon-wrap">
             <span class="iconify card-icon" data-icon="ph:user-circle-bold"></span>
           </div>
@@ -280,7 +275,7 @@
         </div>
 
         <!-- Education Timeline -->
-        <div class="about-education glass-card reveal-up" data-delay="300">
+        <div class="about-education glass-card about-card" id="aboutEducation">
           <div class="card-icon-wrap">
             <span class="iconify card-icon" data-icon="ph:graduation-cap-bold"></span>
           </div>
@@ -316,8 +311,8 @@
           </div>
         </div>
 
-        <!-- Soft Skills / Traits -->
-        <div class="about-traits glass-card reveal-up" data-delay="400">
+        <!-- Core Traits -->
+        <div class="about-traits glass-card about-card" id="aboutTraits">
           <div class="card-icon-wrap">
             <span class="iconify card-icon" data-icon="ph:sparkle-bold"></span>
           </div>
@@ -337,8 +332,9 @@
 
   <!-- ═══════════════════ SKILLS SECTION ═══════════════════ -->
   <section class="section section-alt" id="skills" data-section-name="Skills">
+    <div class="section-glow section-glow-cyan" aria-hidden="true"></div>
     <div class="container">
-      <div class="section-header reveal-up">
+      <div class="section-header" id="skillsHeader">
         <span class="section-tag">Skills</span>
         <h2 class="section-title">Technical <span class="accent">Arsenal</span></h2>
         <p class="section-subtitle">Languages, tools, and soft skills I bring to every project</p>
@@ -346,7 +342,7 @@
 
       <div class="skills-layout">
         <!-- Skill Bars -->
-        <div class="skills-bars reveal-left">
+        <div class="skills-bars" id="skillsBars">
           <h3 class="skills-group-title">Technical Proficiency</h3>
           <div class="skill-bars-list">
 
@@ -414,7 +410,7 @@
         </div>
 
         <!-- Tech Icon Grid -->
-        <div class="skills-icons reveal-right">
+        <div class="skills-icons" id="skillsIcons">
           <h3 class="skills-group-title">Tech Stack</h3>
           <div class="tech-grid">
             <div class="tech-card" data-tooltip="Java">
@@ -459,7 +455,6 @@
             </div>
           </div>
 
-          <!-- Soft Skills -->
           <h3 class="skills-group-title" style="margin-top: 2rem;">Soft Skills</h3>
           <div class="soft-skills">
             <span class="soft-tag">🧩 Problem Solver</span>
@@ -476,34 +471,38 @@
 
   <!-- ═══════════════════ PROJECTS SECTION ═══════════════════ -->
   <section class="section" id="projects" data-section-name="Projects">
+    <div class="section-glow section-glow-teal" aria-hidden="true"></div>
     <div class="container">
-      <div class="section-header reveal-up">
+      <div class="section-header" id="projectsHeader">
         <span class="section-tag">Projects</span>
         <h2 class="section-title">Featured <span class="accent">Work</span></h2>
         <p class="section-subtitle">Real-world solutions built with passion and purpose</p>
       </div>
 
-      <div class="projects-grid">
+      <div class="projects-grid" id="projectsGrid">
 
-        <!-- Project 1 -->
-        <div class="project-card glass-card reveal-up" data-delay="100">
-          <div class="project-card-header">
-            <div class="project-icon-wrap">
-              <svg class="project-icon-svg" aria-hidden="true"><use href="#icon-project"></use></svg>
-            </div>
+        <!-- Project 1: Hand Gesture Controlled Lighting -->
+        <div class="project-card glass-card" data-type="iot" id="proj1">
+          <div class="project-card-top">
+            <div class="project-type-badge">IoT + CV</div>
             <div class="project-links">
-              <!-- REPLACE: Add actual GitHub link -->
               <a href="https://github.com/vimalkumar-GVK" target="_blank" rel="noopener" class="proj-link" aria-label="GitHub Repository" title="GitHub">
                 <svg class="icon" aria-hidden="true"><use href="#icon-github"></use></svg>
               </a>
-
             </div>
+          </div>
+          <div class="project-visual project-visual-iot" aria-hidden="true">
+            <div class="pv-icon"><span class="iconify" data-icon="ph:hand-palm-bold"></span></div>
+            <div class="pv-lines">
+              <div class="pv-line"></div><div class="pv-line"></div><div class="pv-line"></div>
+            </div>
+            <div class="pv-icon pv-icon-right"><span class="iconify" data-icon="ph:lightbulb-bold"></span></div>
           </div>
           <div class="project-year">2025</div>
           <h3 class="project-title">Hand Gesture Controlled Lighting System</h3>
           <p class="project-desc">
-            An innovative IoT + Computer Vision project that uses real-time hand gesture recognition 
-            via OpenCV to control smart lighting via Arduino. Eliminates physical switches through 
+            An innovative IoT + Computer Vision project that uses real-time hand gesture recognition
+            via OpenCV to control smart lighting via Arduino. Eliminates physical switches through
             intuitive gesture commands, making accessibility effortless.
           </p>
           <div class="project-tags">
@@ -514,25 +513,31 @@
           </div>
         </div>
 
-        <!-- Project 2 -->
-        <div class="project-card glass-card reveal-up" data-delay="200">
-          <div class="project-card-header">
-            <div class="project-icon-wrap">
-              <svg class="project-icon-svg" aria-hidden="true"><use href="#icon-project"></use></svg>
-            </div>
+        <!-- Project 2: Event Hub Application -->
+        <div class="project-card glass-card" data-type="fullstack" id="proj2">
+          <div class="project-card-top">
+            <div class="project-type-badge">Full Stack</div>
             <div class="project-links">
-              <!-- REPLACE: Add actual GitHub link -->
               <a href="https://github.com/vimalkumar-GVK" target="_blank" rel="noopener" class="proj-link" aria-label="GitHub Repository" title="GitHub">
                 <svg class="icon" aria-hidden="true"><use href="#icon-github"></use></svg>
               </a>
-
+            </div>
+          </div>
+          <div class="project-visual project-visual-web" aria-hidden="true">
+            <div class="pv-browser">
+              <div class="pv-browser-bar"><span></span><span></span><span></span></div>
+              <div class="pv-browser-content">
+                <div class="pv-browser-line"></div>
+                <div class="pv-browser-line short"></div>
+                <div class="pv-browser-line"></div>
+              </div>
             </div>
           </div>
           <div class="project-year">2026</div>
           <h3 class="project-title">Event Hub Application</h3>
           <p class="project-desc">
-            A full-featured event management web application enabling users to create, discover, and 
-            register for campus events. Features a Python-powered backend with an intuitive HTML/CSS 
+            A full-featured event management web application enabling users to create, discover, and
+            register for campus events. Features a Python-powered backend with an intuitive HTML/CSS
             frontend, supporting event listings, RSVP management, and admin controls.
           </p>
           <div class="project-tags">
@@ -543,25 +548,30 @@
           </div>
         </div>
 
-        <!-- Project 3 -->
-        <div class="project-card glass-card reveal-up" data-delay="300">
-          <div class="project-card-header">
-            <div class="project-icon-wrap">
-              <svg class="project-icon-svg" aria-hidden="true"><use href="#icon-project"></use></svg>
-            </div>
+        <!-- Project 3: Student Performance Analysis -->
+        <div class="project-card glass-card" data-type="ai" id="proj3">
+          <div class="project-card-top">
+            <div class="project-type-badge">Data / AI</div>
             <div class="project-links">
-              <!-- REPLACE: Add actual GitHub link -->
               <a href="https://github.com/vimalkumar-GVK" target="_blank" rel="noopener" class="proj-link" aria-label="GitHub Repository" title="GitHub">
                 <span class="iconify" data-icon="ph:github-logo-bold"></span>
               </a>
-
+            </div>
+          </div>
+          <div class="project-visual project-visual-data" aria-hidden="true">
+            <div class="pv-chart">
+              <div class="pv-bar" style="--h:60%"></div>
+              <div class="pv-bar" style="--h:85%"></div>
+              <div class="pv-bar" style="--h:45%"></div>
+              <div class="pv-bar" style="--h:70%"></div>
+              <div class="pv-bar" style="--h:90%"></div>
             </div>
           </div>
           <div class="project-year">2026</div>
           <h3 class="project-title">Student Performance Analysis</h3>
           <p class="project-desc">
-            A data visualization dashboard built in Python that analyzes and presents student academic 
-            performance trends using interactive charts. Helps educators identify at-risk students and 
+            A data visualization dashboard built in Python that analyzes and presents student academic
+            performance trends using interactive charts. Helps educators identify at-risk students and
             track progress across subjects using matplotlib and pandas.
           </p>
           <div class="project-tags">
@@ -572,25 +582,31 @@
           </div>
         </div>
 
-        <!-- Project 4 -->
-        <div class="project-card glass-card reveal-up" data-delay="400">
-          <div class="project-card-header">
-            <div class="project-icon-wrap">
-              <svg class="project-icon-svg" aria-hidden="true"><use href="#icon-project"></use></svg>
-            </div>
+        <!-- Project 4: Calculator -->
+        <div class="project-card glass-card" data-type="desktop" id="proj4">
+          <div class="project-card-top">
+            <div class="project-type-badge">Desktop App</div>
             <div class="project-links">
-              <!-- REPLACE: Add actual GitHub link -->
               <a href="https://github.com/vimalkumar-GVK" target="_blank" rel="noopener" class="proj-link" aria-label="GitHub Repository" title="GitHub">
                 <span class="iconify" data-icon="ph:github-logo-bold"></span>
               </a>
-
+            </div>
+          </div>
+          <div class="project-visual project-visual-desktop" aria-hidden="true">
+            <div class="pv-calc">
+              <div class="pv-calc-screen">7.81</div>
+              <div class="pv-calc-grid">
+                <span>7</span><span>8</span><span>9</span><span class="op">÷</span>
+                <span>4</span><span>5</span><span>6</span><span class="op">×</span>
+                <span>1</span><span>2</span><span>3</span><span class="op">=</span>
+              </div>
             </div>
           </div>
           <div class="project-year">2026</div>
           <h3 class="project-title">Calculator</h3>
           <p class="project-desc">
-            A feature-rich desktop calculator application built with Python's Tkinter library. 
-            Supports standard arithmetic, history logging, and a clean dark-mode UI with keyboard 
+            A feature-rich desktop calculator application built with Python's Tkinter library.
+            Supports standard arithmetic, history logging, and a clean dark-mode UI with keyboard
             input support — demonstrating GUI development proficiency.
           </p>
           <div class="project-tags">
@@ -601,18 +617,22 @@
           </div>
         </div>
 
-        <!-- Project 5 -->
-        <div class="project-card glass-card reveal-up" data-delay="500">
-          <div class="project-card-header">
-            <div class="project-icon-wrap">
-              <svg class="project-icon-svg" aria-hidden="true"><use href="#icon-project"></use></svg>
-            </div>
+        <!-- Project 5: Attendance Tracker by QR -->
+        <div class="project-card glass-card" data-type="fullstack" id="proj5">
+          <div class="project-card-top">
+            <div class="project-type-badge">Full Stack</div>
             <div class="project-links">
-              <!-- REPLACE: Add actual GitHub link -->
               <a href="https://github.com/vimalkumar-GVK" target="_blank" rel="noopener" class="proj-link" aria-label="GitHub Repository" title="GitHub">
                 <span class="iconify" data-icon="ph:github-logo-bold"></span>
               </a>
-
+            </div>
+          </div>
+          <div class="project-visual project-visual-qr" aria-hidden="true">
+            <div class="pv-qr">
+              <div class="pv-qr-corner tl"></div>
+              <div class="pv-qr-corner tr"></div>
+              <div class="pv-qr-corner bl"></div>
+              <div class="pv-qr-center"><span class="iconify" data-icon="ph:qr-code-bold"></span></div>
             </div>
           </div>
           <div class="project-year">2026</div>
@@ -633,18 +653,19 @@
 
   <!-- ═══════════════════ INTERNSHIPS SECTION ═══════════════════ -->
   <section class="section section-alt" id="internships" data-section-name="Internships">
+    <div class="section-glow section-glow-purple" aria-hidden="true"></div>
     <div class="container">
-      <div class="section-header reveal-up">
+      <div class="section-header" id="internshipsHeader">
         <span class="section-tag">Experience</span>
         <h2 class="section-title">Internship <span class="accent">Journey</span></h2>
         <p class="section-subtitle">Hands-on industry experience shaping my professional foundation</p>
       </div>
 
-      <div class="internships-timeline">
-        <div class="timeline-spine"></div>
+      <div class="internships-timeline" id="internshipsTimeline">
+        <div class="timeline-spine" id="timelineSpine"></div>
 
         <!-- Internship 1 -->
-        <div class="timeline-entry reveal-left" data-delay="100">
+        <div class="timeline-entry" id="intern1">
           <div class="timeline-marker">
             <span class="iconify" data-icon="ph:code-bold"></span>
           </div>
@@ -660,8 +681,8 @@
               <div class="intern-badge">Internship</div>
             </div>
             <p class="intern-desc">
-              Gained hands-on experience designing and developing responsive web interfaces. 
-              Worked on live client projects implementing HTML, CSS, and JavaScript best practices. 
+              Gained hands-on experience designing and developing responsive web interfaces.
+              Worked on live client projects implementing HTML, CSS, and JavaScript best practices.
               Collaborated with the development team to deliver user-friendly web solutions on schedule.
             </p>
             <div class="intern-tags">
@@ -674,7 +695,7 @@
         </div>
 
         <!-- Internship 2 -->
-        <div class="timeline-entry right reveal-right" data-delay="200">
+        <div class="timeline-entry right" id="intern2">
           <div class="timeline-marker">
             <span class="iconify" data-icon="ph:chart-bar-bold"></span>
           </div>
@@ -690,8 +711,8 @@
               <div class="intern-badge">Internship</div>
             </div>
             <p class="intern-desc">
-              Applied Python scripting and data analytics techniques on real datasets. 
-              Performed data cleaning, exploratory data analysis (EDA), and visualization tasks. 
+              Applied Python scripting and data analytics techniques on real datasets.
+              Performed data cleaning, exploratory data analysis (EDA), and visualization tasks.
               Built small automation scripts and contributed to data-driven reporting pipelines.
             </p>
             <div class="intern-tags">
@@ -704,7 +725,7 @@
         </div>
 
         <!-- Internship 3 -->
-        <div class="timeline-entry reveal-left" data-delay="300">
+        <div class="timeline-entry" id="intern3">
           <div class="timeline-marker">
             <span class="iconify" data-icon="ph:cloud-bold"></span>
           </div>
@@ -720,9 +741,9 @@
               <div class="intern-badge">Internship</div>
             </div>
             <p class="intern-desc">
-              Gained practical exposure to cloud infrastructure concepts and services. 
-              Worked on cloud deployment, resource management, and network configuration tasks. 
-              Developed hands-on skills in cloud architecture and best practices for scalable, 
+              Gained practical exposure to cloud infrastructure concepts and services.
+              Worked on cloud deployment, resource management, and network configuration tasks.
+              Developed hands-on skills in cloud architecture and best practices for scalable,
               reliable cloud-based solutions.
             </p>
             <div class="intern-tags">
@@ -740,16 +761,18 @@
 
   <!-- ═══════════════════ CERTIFICATIONS SECTION ═══════════════════ -->
   <section class="section" id="certifications" data-section-name="Certifications">
+    <div class="section-glow section-glow-cyan" aria-hidden="true"></div>
     <div class="container">
-      <div class="section-header reveal-up">
+      <div class="section-header" id="certsHeader">
         <span class="section-tag">Certifications</span>
         <h2 class="section-title">Credentials <span class="accent">Gallery</span></h2>
         <p class="section-subtitle">Validated learning milestones from top platforms</p>
       </div>
 
-      <div class="certs-grid">
+      <div class="certs-grid" id="certsGrid">
 
-        <div class="cert-card glass-card reveal-up" data-delay="100">
+        <div class="cert-card glass-card" id="cert1">
+          <div class="cert-hologram" aria-hidden="true"></div>
           <div class="cert-issuer-logo" style="--cert-color: #0056D2;">
             <span class="iconify" data-icon="simple-icons:coursera"></span>
           </div>
@@ -757,11 +780,11 @@
             <span class="cert-issuer-name">Coursera</span>
             <h3 class="cert-title">Machine Learning</h3>
             <p class="cert-desc">Foundational ML algorithms, supervised/unsupervised learning, and model evaluation techniques.</p>
-
           </div>
         </div>
 
-        <div class="cert-card glass-card reveal-up" data-delay="200">
+        <div class="cert-card glass-card" id="cert2">
+          <div class="cert-hologram" aria-hidden="true"></div>
           <div class="cert-issuer-logo" style="--cert-color: #f97316;">
             <span class="iconify" data-icon="simple-icons:simplenote"></span>
           </div>
@@ -769,11 +792,11 @@
             <span class="cert-issuer-name">Simplilearn</span>
             <h3 class="cert-title">Data Structures and Algorithms</h3>
             <p class="cert-desc">Comprehensive DSA training covering arrays, trees, graphs, sorting, and dynamic programming.</p>
-
           </div>
         </div>
 
-        <div class="cert-card glass-card reveal-up" data-delay="300">
+        <div class="cert-card glass-card" id="cert3">
+          <div class="cert-hologram" aria-hidden="true"></div>
           <div class="cert-issuer-logo" style="--cert-color: #0056D2;">
             <span class="iconify" data-icon="simple-icons:coursera"></span>
           </div>
@@ -781,11 +804,11 @@
             <span class="cert-issuer-name">Coursera</span>
             <h3 class="cert-title">Web App with Python and Flask</h3>
             <p class="cert-desc">Building and deploying web applications using the Flask micro-framework with routing, templates, and REST APIs.</p>
-
           </div>
         </div>
 
-        <div class="cert-card glass-card reveal-up" data-delay="400">
+        <div class="cert-card glass-card" id="cert4">
+          <div class="cert-hologram" aria-hidden="true"></div>
           <div class="cert-issuer-logo" style="--cert-color: #0056D2;">
             <span class="iconify" data-icon="simple-icons:coursera"></span>
           </div>
@@ -793,7 +816,6 @@
             <span class="cert-issuer-name">Coursera</span>
             <h3 class="cert-title">Internet of Things (IoT)</h3>
             <p class="cert-desc">Core IoT concepts including sensors, embedded systems, networking, and building connected device prototypes.</p>
-
           </div>
         </div>
 
@@ -803,16 +825,17 @@
 
   <!-- ═══════════════════ ACHIEVEMENTS SECTION ═══════════════════ -->
   <section class="section section-alt" id="achievements" data-section-name="Achievements">
+    <div class="section-glow section-glow-purple" aria-hidden="true"></div>
     <div class="container">
-      <div class="section-header reveal-up">
+      <div class="section-header" id="achievementsHeader">
         <span class="section-tag">Achievements</span>
         <h2 class="section-title">Milestones &amp; <span class="accent">Awards</span></h2>
         <p class="section-subtitle">Recognition earned through dedication and competitive spirit</p>
       </div>
 
-      <div class="achievements-grid">
+      <div class="achievements-grid" id="achievementsGrid">
 
-        <div class="achievement-card glass-card reveal-up" data-delay="100">
+        <div class="achievement-card glass-card" id="ach1">
           <div class="achievement-icon-wrap gold">
             <span class="iconify" data-icon="ph:trophy-bold"></span>
           </div>
@@ -826,7 +849,7 @@
           </div>
         </div>
 
-        <div class="achievement-card glass-card reveal-up" data-delay="200">
+        <div class="achievement-card glass-card" id="ach2">
           <div class="achievement-icon-wrap silver">
             <span class="iconify" data-icon="ph:medal-bold"></span>
           </div>
@@ -840,7 +863,7 @@
           </div>
         </div>
 
-        <div class="achievement-card glass-card reveal-up" data-delay="300">
+        <div class="achievement-card glass-card" id="ach3">
           <div class="achievement-icon-wrap teal">
             <span class="iconify" data-icon="ph:lightning-bold"></span>
           </div>
@@ -854,7 +877,7 @@
           </div>
         </div>
 
-        <div class="achievement-card glass-card reveal-up" data-delay="400">
+        <div class="achievement-card glass-card" id="ach4">
           <div class="achievement-icon-wrap teal">
             <span class="iconify" data-icon="ph:brain-bold"></span>
           </div>
@@ -868,7 +891,7 @@
           </div>
         </div>
 
-        <div class="achievement-card glass-card reveal-up" data-delay="500">
+        <div class="achievement-card glass-card" id="ach5">
           <div class="achievement-icon-wrap teal">
             <span class="iconify" data-icon="ph:code-bold"></span>
           </div>
@@ -882,7 +905,7 @@
           </div>
         </div>
 
-        <div class="achievement-card glass-card reveal-up" data-delay="600">
+        <div class="achievement-card glass-card" id="ach6">
           <div class="achievement-icon-wrap silver">
             <span class="iconify" data-icon="ph:medal-bold"></span>
           </div>
@@ -896,7 +919,7 @@
           </div>
         </div>
 
-        <div class="achievement-card glass-card reveal-up" data-delay="700">
+        <div class="achievement-card glass-card" id="ach7">
           <div class="achievement-icon-wrap teal">
             <span class="iconify" data-icon="ph:lightning-bold"></span>
           </div>
@@ -910,7 +933,7 @@
           </div>
         </div>
 
-        <div class="achievement-card glass-card reveal-up" data-delay="800">
+        <div class="achievement-card glass-card" id="ach8">
           <div class="achievement-icon-wrap teal">
             <span class="iconify" data-icon="ph:lightning-bold"></span>
           </div>
@@ -930,21 +953,25 @@
 
   <!-- ═══════════════════ CONTACT SECTION ═══════════════════ -->
   <section class="section" id="contact" data-section-name="Contact">
+    <div class="section-glow section-glow-cyan" aria-hidden="true"></div>
     <div class="container">
-      <div class="section-header reveal-up">
+      <div class="section-header" id="contactHeader">
         <span class="section-tag">Contact</span>
         <h2 class="section-title">Let's <span class="accent">Connect</span></h2>
         <p class="section-subtitle">Got a project, opportunity, or just want to say hello? I'd love to hear from you.</p>
       </div>
 
-      <div class="contact-centered reveal-up">
+      <!-- Orb canvas -->
+      <canvas id="contactCanvas" aria-hidden="true"></canvas>
+
+      <div class="contact-centered" id="contactCentered">
 
         <p class="contact-intro">
           Whether it's a collaboration, an internship offer, or just a conversation about tech —
           my inbox is always open. Let's build something great together.
         </p>
 
-        <div class="contact-cards">
+        <div class="contact-cards" id="contactCards">
           <a href="mailto:vimalkumarg2366@gmail.com" class="contact-card glass-card">
             <div class="cc-icon email-icon">
               <span class="iconify" data-icon="ph:envelope-simple-bold"></span>
@@ -990,7 +1017,7 @@
           </a>
         </div>
 
-        <div class="location-tag">
+        <div class="location-tag" id="locationTag">
           <span class="iconify" data-icon="ph:map-pin-fill"></span>
           <span>Based in <strong>Coimbatore, Tamil Nadu</strong>, India</span>
         </div>
@@ -1009,31 +1036,28 @@
         Designed &amp; Built by <strong>Vimal Kumar G</strong> · 2026
       </p>
       <div class="footer-socials">
-        <a href="https://github.com/vimalkumar-GVK" target="_blank" rel="noopener" aria-label="GitHub">
+        <a href="https://github.com/vimalkumar-GVK" target="_blank" rel="noopener" aria-label="GitHub" class="social-link">
           <span class="iconify" data-icon="ph:github-logo-bold"></span>
         </a>
-        <a href="https://linkedin.com/in/Vimal-Kumar-G2366" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <a href="https://linkedin.com/in/Vimal-Kumar-G2366" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-link">
           <span class="iconify" data-icon="ph:linkedin-logo-bold"></span>
         </a>
-        <a href="mailto:vimalkumarg2366@gmail.com" aria-label="Email">
+        <a href="mailto:vimalkumarg2366@gmail.com" aria-label="Email" class="social-link">
           <span class="iconify" data-icon="ph:envelope-simple-bold"></span>
         </a>
       </div>
     </div>
   </footer>
 
-
-
   <script src="main.js"></script>
-  <!-- Icon fallback: if Iconify fails to render any icon, replace with a simple SVG placeholder -->
+
+  <!-- Icon fallback -->
   <script>
     (function(){
-      // Run after load to give Iconify a chance to render
       function applyFallback(){
         document.querySelectorAll('.iconify').forEach(function(el){
-          // If Iconify didn't replace the span with an SVG, insert a fallback
           if (!el.querySelector('svg')){
-            el.innerHTML = '\n              <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">\n                <rect x="1.5" y="1.5" width="25" height="25" rx="6" stroke="rgba(0,212,170,0.18)" stroke-width="2" fill="rgba(6,38,58,0.6)" />\n              </svg>';
+            el.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" stroke="rgba(99,216,213,0.3)" stroke-width="1.5"/></svg>';
             el.classList.add('icon-fallback');
           }
         });
