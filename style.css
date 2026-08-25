@@ -813,9 +813,13 @@ ul { list-style: none; }
 }
 
 .about-card p {
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   color: var(--muted);
   line-height: 1.75;
+}
+.about-card p strong {
+  color: #FFFFFF;
+  font-weight: 700;
 }
 
 /* Info list */
